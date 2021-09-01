@@ -14,6 +14,6 @@ class InputViewController: UIViewController {
     @IBOutlet private weak var inputTextField: UITextField!
 
     @IBAction func changeInputTextField(_ sender: UITextField) {
-        addItem = [Item(item: inputTextField.text ?? "", check: true)]
+        addItem = [Item(name: inputTextField.text ?? "", isChecked: true)]
     }
 }

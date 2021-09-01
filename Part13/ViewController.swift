@@ -8,8 +8,8 @@
 import UIKit
 
 struct Item {
-    var item: String
-    var check: Bool
+    var name: String
+    var isChecked: Bool
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -17,10 +17,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet private weak var tableView: UITableView!
 
     private var items: [Item] = [
-        Item(item: "りんご", check: true),
-        Item(item: "みかん", check: false),
-        Item(item: "バナナ", check: true),
-        Item(item: "パイナップル", check: false)
+        Item(name: "りんご", isChecked: true),
+        Item(name: "みかん", isChecked: false),
+        Item(name: "バナナ", isChecked: true),
+        Item(name: "パイナップル", isChecked: false)
     ]
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,9 +31,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "CheckCell", for: indexPath)
 
-        cell.textLabel!.text = items[indexPath.row].item
+        cell.textLabel!.text = items[indexPath.row].name
 
-        if items[indexPath.row].check {
+        if items[indexPath.row].isChecked {
             cell.imageView?.tintColor = .white
         } else {
             cell.imageView?.tintColor = .orange
@@ -54,9 +54,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        items[indexPath.row].check = !items[indexPath.row].check
+        items[indexPath.row].isChecked.toggle()
 
-        let indexPaths = [IndexPath(row: indexPath.row, section: 0)]
+        let indexPaths = [indexPath]
         tableView.reloadRows(at: indexPaths, with: .fade)
     }
 }
